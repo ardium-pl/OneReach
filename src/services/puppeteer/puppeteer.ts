@@ -16,12 +16,14 @@ const getRandomUserAgent = (): string => {
   return userAgents[Math.floor(Math.random() * userAgents.length)];
 };
 
+
 class PuppeteerWrapper {
   private browser: Browser | null = null;
   private page: Page | null = null;
 
   async init(): Promise<void> {
     this.browser = await puppeteer.launch({
+      executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
       headless: false,
       args: [`--user-agent=${getRandomUserAgent()}`],
     });
@@ -38,7 +40,11 @@ class PuppeteerWrapper {
     await this.page.goto(url, { waitUntil: "domcontentloaded" });
   }
 
-  async enterSignature(selector: string, signature: string): Promise<void> {
+  async searchSignature(
+    selector: string,
+    signature: string,
+    searchButton: string
+  ): Promise<void> {
     if (!this.page) {
       throw new Error(
         "Puppeteer instance is not initialized. Call init() first."
@@ -47,6 +53,7 @@ class PuppeteerWrapper {
 
     await this.page.waitForSelector(selector);
     await this.page.type(selector, signature);
+    await this.page.click(searchButton);
   }
 
   async close(): Promise<void> {
