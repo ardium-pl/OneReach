@@ -2,7 +2,7 @@ export const letsGoButton =
   "body > aside.visible.welcome-overlay-wrapper.fixed.left-0.w-full.overflow-hidden > div.active.shadow-modal.dark:shadow-modal-dark.welcome-bar.absolute.bottom-0.flex.flex-col.items-stretch.bg-white.dark:bg-on-background.w-full.h-full.overflow-y-hidden > div > div.idw-welcome-content.m-auto.flex.flex-col.items-center.gap-[12px].md:gap-[24px].text-center > div.idw-welcome-actions > button";
 
 export const webPage =
-  "https://chat.edison.onereach.ai/RRrkMFazQcCDAsHCJzNc5g/idw-v1/starter/RRrkMFazQcCDAsHCJzNc5g/skill-manage-knowledge-v1?id=skill-manage-knowledge-v1&__starter_title=Manage+Knowledge&contactId=3509cdfb-9cbf-46e3-ba87-de195bddf4dc&loader=dark&parentHitlSessionId=_FuHWUEPQWGwHZ7_RRbHmQ&hitlSessionId=8Dt-_NCoThKeMrV5WuEcRQ";
+  process.env.WEB_PAGE || "";
 
 export const loginInput = `input[placeholder="example@mail.com"]`;
 
