@@ -103,7 +103,7 @@ export class KnowledgeApiService {
     await this.postPayload(this.trainUrl, this.trainHeaders, payload);
   }
 
-  private async readKnowledgeJson(filePath: string): Promise<KnowledgeBase> {
+  public async readKnowledgeJson(filePath: string): Promise<KnowledgeBase> {
     try {
       const data = await fs.readFile(filePath, "utf-8");
       return JSON.parse(data) as KnowledgeBase;
