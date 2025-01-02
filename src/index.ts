@@ -53,6 +53,8 @@ class Main {
 
     logger.info("Wywołano");
     await this.puppeteer.page?.screenshot({ path: this.screenshotPath });
+    await sleep(1000);
+    await this.puppeteer.page?.close();
   }
 
   public async checkAnswer(question: string, knowledgeData: KnowledgeBase): Promise<string> {
