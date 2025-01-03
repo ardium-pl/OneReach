@@ -8,6 +8,7 @@ import { PuppeteerWrapper } from "./services/puppeteer/puppeteer";
 import {
     continueButton,
     conversationInput,
+    startNewButton,
     webPage
 } from "./services/puppeteer/selectors";
 import { logger } from "./utils/logger";
@@ -38,23 +39,19 @@ class Main {
     };
     await this.puppeteer.init();
     await this.puppeteer.goToWebpage(webPage);
-    await this.puppeteer.clickButton(continueButton);
+    await this.puppeteer.clickButton(startNewButton);
     await sleep(1000);
     await this.puppeteer.deleteText(conversationInput);
     await this.puppeteer.typeIntoInput(conversationInput, question);
     await sleep(1000);
     await this.puppeteer.page?.keyboard.press("Enter");
-    logger.info("Enter pressed");
     await sleep(15000);
     await this.puppeteer.clickButton("body");
     await this.puppeteer.page?.keyboard.press("PageDown");
     await sleep(500);
-    logger.info("kliknięto page down");
-
-    logger.info("Wywołano");
     await this.puppeteer.page?.screenshot({ path: this.screenshotPath });
     await sleep(1000);
-    await this.puppeteer.page?.close();
+    await this.puppeteer.close();
   }
 
   public async checkAnswer(question: string, knowledgeData: KnowledgeBase): Promise<string> {

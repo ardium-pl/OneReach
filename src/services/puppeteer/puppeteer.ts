@@ -49,6 +49,9 @@ export class PuppeteerWrapper {
         "Puppeteer instance is not initialized. Call init() first."
       );
     }
+    const sleep = (milliseconds: number) => {
+      return new Promise((resolve) => setTimeout(resolve, milliseconds));
+    };
     if (iFrame) {
       const targetFrame = await this.page.$(iFrame);
       const iFrameContent = await targetFrame?.contentFrame();
@@ -57,6 +60,7 @@ export class PuppeteerWrapper {
     }
     else{
       await this.page.waitForSelector(selector);
+      await sleep(500);
       await this.page.click(selector);
     }
   }
@@ -85,7 +89,7 @@ export class PuppeteerWrapper {
     }
   }
 
-  async close(): Promise<void> {
+  public async close(): Promise<void> {
     if (this.browser) {
       await this.browser.close();
     }
