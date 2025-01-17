@@ -11,7 +11,6 @@ sequenceDiagram
     participant OpenAiService
     participant PuppeteerWrapper
     participant GoogleVision
-    participant Logger
     participant FileSystem
 
     User->>Main: Start application
@@ -23,7 +22,7 @@ sequenceDiagram
     KnowledgeApiService-->>Main: Return trained knowledge data
 
     Main->>OpenAiService: Generate question
-    OpenAiService->>OpenAiService: Generate GPT response
+    OpenAiService->>OpenAiService: Generate GPT question according to knowledge
     OpenAiService-->>Main: Return generated question
 
     Main->>PuppeteerWrapper: Launch Puppeteer
