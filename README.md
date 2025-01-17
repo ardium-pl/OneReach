@@ -1,4 +1,9 @@
 # OneReach
+## Process Flow
+
+Below is a sequence diagram illustrating the main process flow of the application:
+
+```mermaid
 sequenceDiagram
     participant User
     participant Main
@@ -39,3 +44,5 @@ sequenceDiagram
     Main->>FileSystem: Remove temporary screenshot
     FileSystem-->>Main: Confirmation
     Main->>User: Display result
+
+```
